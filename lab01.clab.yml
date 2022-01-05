@@ -1,0 +1,45 @@
+name: lab01
+
+mgmt:
+  network: lab01-mgmt
+  ipv4_subnet: 10.10.10.0/24
+  ipv6_subnet: 2001:10:10:10::/64
+
+topology:
+  nodes:
+    ceos1:
+      kind: ceos
+      image: ceos:4.25.4M
+      startup-config: ./configs/ceos1.cfg
+      mgmt_ipv4: 10.10.10.2
+      mgmt_ipv6: 2001:10:10:10::2
+    ceos2:
+      kind: ceos
+      image: ceos:4.25.4M
+      startup-config: ./configs/ceos2.cfg
+      mgmt_ipv4: 10.10.10.3
+      mgmt_ipv6: 2001:10:10:10::3
+    centos1:
+      kind: linux
+      image: centos:8
+      binds:
+        - ./configs/init_centos1.sh:/init_centos1.sh
+      exec:
+        - bash /init_centos1.sh
+      mgmt_ipv4: 10.10.10.4
+      mgmt_ipv6: 2001:10:10:10::4
+    centos2:
+      kind: linux
+      image: centos:8
+      binds:
+        - ./configs/init_centos2.sh:/init_centos2.sh
+      exec:
+        - bash /init_centos2.sh
+      mgmt_ipv4: 10.10.10.5
+      mgmt_ipv6: 2001:10:10:10::5
+
+  links:
+    - endpoints: ["ceos1:eth1","ceos2:eth1"]
+    - endpoints: ["ceos1:eth2","centos1:eth1"]
+    - endpoints: ["ceos2:eth2","centos2:eth1"]
+
