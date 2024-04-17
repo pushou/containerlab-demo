@@ -1,0 +1,181 @@
+{
+  "name": "lab01",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "lab01-mgmt",
+        "bridge": "br-153d8be4a0d9",
+        "ipv4-subnet": "10.10.10.0/24",
+        "ipv4-gw": "10.10.10.1",
+        "ipv6-subnet": "2001:10:10:10::/64",
+        "ipv6-gw": "2001:10:10:10::1",
+        "mtu": 1500,
+        "external-access": true
+      }
+    }
+  },
+  "nodes": {
+    "centos1": {
+      "index": "0",
+      "shortname": "centos1",
+      "longname": "clab-lab01-centos1",
+      "fqdn": "centos1.lab01.io",
+      "group": "",
+      "labdir": "/home/learning_labs/containerlab-demo/clab-lab01/centos1",
+      "kind": "linux",
+      "image": "registry.iutbeziers.fr/rocky9:ssh",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "10.10.10.4",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:10:10:10::4",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-153d8be4a0d9",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/learning_labs/containerlab-demo/clab-lab01/centos1",
+        "clab-node-name": "centos1",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/learning_labs/containerlab-demo/lab01.clab.yml",
+        "containerlab": "lab01"
+      },
+      "port-bindings": [
+      ]
+    },
+    "centos2": {
+      "index": "1",
+      "shortname": "centos2",
+      "longname": "clab-lab01-centos2",
+      "fqdn": "centos2.lab01.io",
+      "group": "",
+      "labdir": "/home/learning_labs/containerlab-demo/clab-lab01/centos2",
+      "kind": "linux",
+      "image": "registry.iutbeziers.fr/rocky9:ssh",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "10.10.10.5",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:10:10:10::5",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-153d8be4a0d9",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/learning_labs/containerlab-demo/clab-lab01/centos2",
+        "clab-node-name": "centos2",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/learning_labs/containerlab-demo/lab01.clab.yml",
+        "containerlab": "lab01"
+      },
+      "port-bindings": [
+      ]
+    },
+    "ceos1": {
+      "index": "2",
+      "shortname": "ceos1",
+      "longname": "clab-lab01-ceos1",
+      "fqdn": "ceos1.lab01.io",
+      "group": "",
+      "labdir": "/home/learning_labs/containerlab-demo/clab-lab01/ceos1",
+      "kind": "ceos",
+      "image": "registry.iutbeziers.fr/ceosimage:4.29.02F",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "10.10.10.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:10:10:10::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "00:1c:73:cc:2f:88",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-153d8be4a0d9",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/learning_labs/containerlab-demo/clab-lab01/ceos1",
+        "clab-node-name": "ceos1",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/learning_labs/containerlab-demo/lab01.clab.yml",
+        "containerlab": "lab01"
+      },
+      "port-bindings": [
+      ]
+    },
+    "ceos2": {
+      "index": "3",
+      "shortname": "ceos2",
+      "longname": "clab-lab01-ceos2",
+      "fqdn": "ceos2.lab01.io",
+      "group": "",
+      "labdir": "/home/learning_labs/containerlab-demo/clab-lab01/ceos2",
+      "kind": "ceos",
+      "image": "registry.iutbeziers.fr/ceosimage:4.29.02F",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "10.10.10.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "2001:10:10:10::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "00:1c:73:33:fb:72",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-153d8be4a0d9",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/learning_labs/containerlab-demo/clab-lab01/ceos2",
+        "clab-node-name": "ceos2",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/learning_labs/containerlab-demo/lab01.clab.yml",
+        "containerlab": "lab01"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "a": {
+        "node": "ceos1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:20:26:5b",
+        "peer": "z"
+      },
+      "z": {
+        "node": "ceos2",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:f0:65:c8",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "ceos1",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:de:4c:11",
+        "peer": "z"
+      },
+      "z": {
+        "node": "centos1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:07:43:6a",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "ceos2",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:91:7f:b6",
+        "peer": "z"
+      },
+      "z": {
+        "node": "centos2",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:77:02:f0",
+        "peer": "a"
+      }
+    }
+  ]
+}

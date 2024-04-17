@@ -1,0 +1,87 @@
+! Startup-config last modified at Wed Apr 17 10:22:24 2024 by root
+! device: ceos2 (cEOSLab, EOS-4.29.0.2F-29226602.42902F (engineering build))
+!
+no aaa root
+!
+username autoadmin privilege 15 role network-admin secret sha512 $6$oyqPzrhnOWEv/vTa$9Aiol0gBc.O/C0MXmP2mKEqqv5u2eRc4jRXNTZ/44Dhi8ZTRmV3kgzKJgoMo27V/RqwlL5l1SU0o41JrXFC0d1
+!
+vlan internal order descending range 3000 4094
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
+hostname ceos2-jtech
+!
+spanning-tree mode none
+!
+vlan 10
+   name servers
+!
+vlan 20
+   name clients
+!
+vrf instance mgmtVrf
+!
+management api http-commands
+   no shutdown
+!
+management api gnmi
+   transport grpc default
+!
+management api netconf
+   transport ssh default
+!
+interface Ethernet1
+   description L: cEOS2-Eth1
+   load-interval 30
+   no switchport
+   ip address 10.10.10.1/31
+   ipv6 address 2001:db8:100::1/127
+   ip ospf area 0.0.0.0
+   ipv6 ospf 1 area 0.0.0.0
+!
+interface Ethernet2
+   description L: centos1
+   load-interval 30
+   switchport access vlan 10
+!
+interface Loopback0
+   description C: cEOS2-Loopback0
+   ip address 2.2.2.2/32
+   ipv6 address 2001:db8::2:2:2:2/128
+!
+interface Management0
+   description L: Mgmt Interface
+   vrf mgmtVrf
+   ip address 10.10.10.3/24
+   ipv6 address 2001:10:10:10::3/64
+!
+interface Vlan10
+   description H: Servers vlan
+   load-interval 30
+   ip address 192.168.10.1/24
+   ipv6 address 2001:db8:192:168:10::1/64
+!
+ip routing
+ip routing vrf mgmtVrf
+!
+ipv6 unicast-routing
+ipv6 unicast-routing vrf mgmtVrf
+!
+router bfd
+   interval 500 min-rx 500 multiplier 3 default
+!
+router ospf 1
+   router-id 2.2.2.2
+   bfd default
+   redistribute connected
+   redistribute static
+   max-lsa 12000
+!
+ipv6 router ospf 1
+   router-id 2.2.2.2
+   bfd default
+   redistribute static
+!
+end
